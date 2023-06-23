@@ -19,3 +19,13 @@ Get XSK map FD
 Request Busy Poll
 Version, do this first?
 */
+
+/*Returns the version of our Handshake*/
+func GetVersion() string {
+	return constants.Uds.Handshake.Version
+}
+
+/*Returns the version of our Handshake in the terminal*/
+func GetVersionCommand() {
+	fmt.Printf("/version %s \n", constants.Uds.Handshake.Version)
+}
