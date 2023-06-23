@@ -13,3 +13,9 @@ func compile() {
 	fmt.Println(constants.Uds.Protocol)
 	uds.NewHandler()
 }
+
+/*
+Get XSK map FD
+Request Busy Poll
+Version, do this first?
+*/
