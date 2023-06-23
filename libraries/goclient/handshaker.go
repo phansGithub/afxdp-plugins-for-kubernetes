@@ -29,3 +29,8 @@ func GetVersion() string {
 func GetVersionCommand() {
 	fmt.Printf("/version %s \n", constants.Uds.Handshake.Version)
 }
+
+/*Gets the XSK map FD, may be broken down into sub-methods*/
+func GetXSKmapFD(hostname string) {
+
+}
