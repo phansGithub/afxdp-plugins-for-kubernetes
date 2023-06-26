@@ -18,6 +18,10 @@ var (
 	hPod host.Handler
 )
 
+const (
+	requestDelay = 100 * time.Millisecond
+)
+
 /*
 Get XSK map FD
 Request Busy Poll
