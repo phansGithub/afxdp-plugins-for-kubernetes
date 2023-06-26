@@ -25,9 +25,9 @@ func GetVersionStr() string {
 	return constants.Uds.Handshake.Version
 }
 
-/*Returns the version of our Handshake in the terminal*/
-func GetVersionCommand() {
-	fmt.Printf("/version %s \n", constants.Uds.Handshake.Version)
+/*Returns the version of our Handshake*/
+func GetVersion() {
+	makeRequest("/version")
 }
 
 /*Gets the XSK map FD, may be broken down into sub-methods*/
