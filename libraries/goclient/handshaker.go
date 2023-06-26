@@ -37,4 +37,15 @@ func RequestXSKmapFD(hostname string) {
 
 func CreateSession() {
 
+func makeRequest(request string) {
+	fmt.Println("Request: " + request)
+	if err := hWR.Write(request, -1); err != nil {
+		logError("ERROR: %v failed to write to socket", err)
+	}
+	response, fd, err := hWR.Read()
+	if err != nil {
+		logError("Error Reading", err)
+	}
+	fmt.Printf("Response: %s, FD: %d", response, fd)
+	fmt.Println()
 }
