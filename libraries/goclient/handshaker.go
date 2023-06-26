@@ -33,6 +33,9 @@ func GetVersionCommand() {
 /*Gets the XSK map FD, may be broken down into sub-methods*/
 func RequestXSKmapFD(hostname string) {
 
+func CreateSession() {
+	hWR = uds.NewHandler()
+	srv.Start()
 }
 
 func logError(message string, e error) {
