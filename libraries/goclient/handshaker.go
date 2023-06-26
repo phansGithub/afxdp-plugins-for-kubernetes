@@ -8,11 +8,11 @@ import (
 	"github.com/intel/afxdp-plugins-for-kubernetes/internal/uds"
 )
 
-// This is just to make things compile
-func compile() {
-	fmt.Println(constants.Uds.Protocol)
-	uds.NewHandler()
-}
+var (
+	srv  udsserver.Server
+	hWR  uds.Handler
+	hPod host.Handler
+)
 
 /*
 Get XSK map FD
