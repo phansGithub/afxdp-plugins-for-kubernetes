@@ -2,6 +2,7 @@ package goclient
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/intel/afxdp-plugins-for-kubernetes/constants"
 
@@ -51,6 +52,15 @@ func RequestXSKmapFD(devName string) {
 
 func CreateSession() {
 	hWR = uds.NewHandler()
+	err := hWR.Init(constants.Uds.SockDir,
+		constants.Uds.Protocol,
+		constants.Uds.MsgBufSize,
+		constants.Uds.CtlBufSize,
+		time.Duration(constants.Uds.MinTimeout),
+		"")
+	if err != nil {
+		logError("Failed to initialize UDS socket", err)
+	}
 	srv.Start()
 }
 
