@@ -77,6 +77,12 @@ func makeRequest(request string) {
 	if err != nil {
 		logError("Error Reading", err)
 	}
+	checkXSKReq(request, response)
 	fmt.Printf("Response: %s, FD: %d", response, fd)
 	fmt.Println()
+}
+
+func checkXSKReq(request, response string) {
+	fmt.Println(request)
+	fmt.Println(response)
 }
