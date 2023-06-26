@@ -35,7 +35,9 @@ func RequestXSKmapFD(hostname string) {
 
 }
 
-func CreateSession() {
+func logError(message string, e error) {
+	logging.Errorf("%s : %v", message, e)
+}
 
 func makeRequest(request string) {
 	fmt.Println("Request: " + request)
