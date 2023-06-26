@@ -56,8 +56,12 @@ func RequestXSKmapFD(devName string) {
 	if err != nil {
 		logError("Failed to authenticate hostname", err)
 	}
-	makeRequest(fmt.Sprintf("connect, %s", hostName))
-	makeRequest(fmt.Sprintf("/xsk_map_fd, %s", devName))
+	authString := fmt.Sprintf("connect, %s", hostName)
+	makeRequest(authString)
+	time.Sleep(requestDelay)
+	mapString := fmt.Sprintf("/xsk_map_fd, %s", devName)
+	makeRequest(mapString)
+	time.Sleep(requestDelay)
 }
 
 /*
