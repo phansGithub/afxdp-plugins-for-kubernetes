@@ -5,7 +5,10 @@ import (
 
 	"github.com/intel/afxdp-plugins-for-kubernetes/constants"
 
+	"github.com/intel/afxdp-plugins-for-kubernetes/internal/host"
 	"github.com/intel/afxdp-plugins-for-kubernetes/internal/uds"
+	"github.com/intel/afxdp-plugins-for-kubernetes/internal/udsserver"
+	logging "github.com/sirupsen/logrus"
 )
 
 var (
