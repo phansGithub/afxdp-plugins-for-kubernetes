@@ -31,6 +31,10 @@ func GetVersionCommand() {
 }
 
 /*Gets the XSK map FD, may be broken down into sub-methods*/
-func GetXSKmapFD(hostname string) {
+func RequestXSKmapFD(hostname string) {
+
+}
+
+func CreateSession() {
 
 }
