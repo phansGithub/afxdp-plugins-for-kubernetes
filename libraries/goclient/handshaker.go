@@ -31,7 +31,20 @@ func GetVersion() {
 }
 
 /*Gets the XSK map FD, may be broken down into sub-methods*/
-func RequestXSKmapFD(hostname string) {
+func RequestXSKmapFD(devName string) {
+	cleaner, err := hWR.Dial()
+	if err != nil {
+		logError("Failed to dial server", err)
+		cleaner()
+	}
+	defer cleaner()
+	hostName, err := hPod.Hostname()
+	if err != nil {
+		logError("Failed to authenticate hostname", err)
+	}
+	makeRequest(fmt.Sprintf("connect, %s", hostName))
+	makeRequest(fmt.Sprintf("/xsk_map_fd, %s", devName))
+}
 
 func CreateSession() {
 	hWR = uds.NewHandler()
