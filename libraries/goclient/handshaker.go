@@ -20,8 +20,8 @@ Request Busy Poll
 Version, do this first?
 */
 
-/*Returns the version of our Handshake*/
-func GetVersion() string {
+/*Returns the version of our Handshake as a string*/
+func GetVersionStr() string {
 	return constants.Uds.Handshake.Version
 }
 
