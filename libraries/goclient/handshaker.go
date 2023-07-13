@@ -35,25 +35,23 @@ func GetVersionStr() string {
 }
 
 /*
-Returns the version of our Handshake
+Call this function to initialize the library, returns a cleanup function
 */
-func GetVersion() {
-	makeRequest("/version")
+func Init() uds.CleanupFunc {
+	hWR = uds.NewHandler()
+	if err := hWR.Init(constants.Uds.PodPath, constants.Uds.Protocol, constants.Uds.MsgBufSize, constants.Uds.CtlBufSize, 0*time.Second, ""); err != nil {
+		println("Library Error: Error Initialising UDS server: ", err)
+		os.Exit(1)
 }
 
-/*
-Gets the XSK map FD, may be broken down into sub-methods
-*/
-func RequestXSKmapFD(devName string) {
-	cleaner, err := hWR.Dial()
+	cleanup, err := hWR.Dial()
 	if err != nil {
-		logError("Failed to dial server", err)
-		cleaner()
+		println("Library Error: UDS Dial error: ", err)
+		cleanup()
+		os.Exit(1)
 	}
-	defer cleaner()
-	hostName, err := hPod.Hostname()
-	if err != nil {
-		logError("Failed to authenticate hostname", err)
+
+	return cleanup
 	}
 	authString := fmt.Sprintf("connect, %s", hostName)
 	makeRequest(authString)
