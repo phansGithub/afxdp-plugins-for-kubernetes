@@ -118,7 +118,29 @@ func logError(message string, e error) {
 /*
 Makes a request to the server
 */
-func makeRequest(request string) {
+
+func makeRequest(request string) int {
+
+	println()
+	println("Test App - Request: " + request)
+
+	if err := hWR.Write(request, -1); err != nil {
+		println("Test App - Write error: ", err)
+	}
+
+	response, fd, err := hWR.Read()
+	if err != nil {
+		println("Test App - Read error: ", err)
+	}
+
+	println("Test App - Response: " + response)
+	if fd > 0 {
+		println("Test App - File Descriptor:", strconv.Itoa(fd))
+	}
+	println()
+	return fd
+}
+
 	fmt.Println("Request: " + request)
 	if err := hWR.Write(request, -1); err != nil {
 		logError("ERROR: %v failed to write to socket", err)
