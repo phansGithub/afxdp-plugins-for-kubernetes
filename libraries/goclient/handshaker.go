@@ -89,6 +89,9 @@ func RequestXSKmapFD(devNames []string) (map[string]int, uds.CleanupFunc) {
 
 	return fds, cleanup
 }
+
+func RequestBusyPoll() {
+
 }
 
 /*
