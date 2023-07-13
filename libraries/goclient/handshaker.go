@@ -58,9 +58,37 @@ func RequestXSKmapFD(devName string) {
 	authString := fmt.Sprintf("connect, %s", hostName)
 	makeRequest(authString)
 	time.Sleep(requestDelay)
-	mapString := fmt.Sprintf("/xsk_map_fd, %s", devName)
-	makeRequest(mapString)
-	time.Sleep(requestDelay)
+
+/*
+Give it a list of device names and returns a map of the fds for each device and a cleanup function to close the connection
+*/
+func RequestXSKmapFD(devNames []string) (map[string]int, uds.CleanupFunc) {
+	hWR = uds.NewHandler()
+	fds := make(map[string]int)
+	// init
+	if err := hWR.Init(constants.Uds.PodPath, constants.Uds.Protocol, constants.Uds.MsgBufSize, constants.Uds.CtlBufSize, 0*time.Second, ""); err != nil {
+		println("Test App Error: Error Initialising UDS server: ", err)
+		os.Exit(1)
+	}
+	// Execute timeoutBeforeConnect when set to true
+
+	cleanup, err := hWR.Dial()
+	if err != nil {
+		println("Test App Error: UDS Dial error:: ", err)
+		cleanup()
+		os.Exit(1)
+	}
+
+	// connect and verify pod hostname
+	makeRequest("/connect, afxdp-e2e-test")
+	for _, dev := range devNames {
+		fd := makeRequest("/xsk_map_fd, " + dev)
+		fds[dev] = fd
+	}
+	makeRequest("/fin")
+
+	return fds, cleanup
+}
 }
 
 /*
