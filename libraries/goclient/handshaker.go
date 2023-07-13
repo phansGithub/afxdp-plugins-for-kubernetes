@@ -13,7 +13,6 @@ import (
 )
 
 var (
-	srv  udsserver.Server
 	hWR  uds.Handler
 	hPod host.Handler
 )
