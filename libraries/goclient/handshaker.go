@@ -105,8 +105,6 @@ func RequestBusyPoll() {
 Logs an error with a message
 */
 func logError(message string, e error) {
-	// logging.Errorf("%s : %v", message, e)
-	// panic(e)
 	println(message, e)
 }
 
