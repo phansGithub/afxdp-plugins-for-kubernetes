@@ -22,12 +22,6 @@ const (
 )
 
 /*
-Get XSK map FD
-Request Busy Poll
-Version, do this first?
-*/
-
-/*
 Returns the version of our Handshake as a string
 */
 func GetVersionStr() string {
