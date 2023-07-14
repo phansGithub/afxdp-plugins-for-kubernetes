@@ -8,6 +8,7 @@ require (
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0
 	github.com/google/gofuzz v1.1.0
 	github.com/google/uuid v1.3.0
+	github.com/intel/afxdp-plugins-for-kubernetes/libraries/goclient v0.0.0-00010101000000-000000000000
 	github.com/intel/afxdp-plugins-for-kubernetes/pkg/subfunctions v0.0.0
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.7.0
@@ -20,3 +21,5 @@ require (
 )
 
 replace github.com/intel/afxdp-plugins-for-kubernetes/pkg/subfunctions => ./pkg/subfunctions
+
+replace github.com/intel/afxdp-plugins-for-kubernetes/libraries/goclient => ./libraries/goclient
