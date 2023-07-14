@@ -37,7 +37,7 @@ func Init() uds.CleanupFunc {
 	if err := hWR.Init(constants.Uds.PodPath, constants.Uds.Protocol, constants.Uds.MsgBufSize, constants.Uds.CtlBufSize, 0*time.Second, ""); err != nil {
 		println("Library Error: Error Initialising UDS server: ", err)
 		os.Exit(1)
-}
+	}
 
 	cleanup, err := hWR.Dial()
 	if err != nil {
@@ -46,7 +46,7 @@ func Init() uds.CleanupFunc {
 		os.Exit(1)
 	}
 	return cleanup
-	}
+}
 
 /*
 Returns the version of our Handshake
@@ -60,21 +60,7 @@ func GetVersion() {
 Give it a list of device names and returns a map of the fds for each device and a cleanup function to close the connection
 */
 func RequestXSKmapFD(devNames []string) map[string]int {
-	// hWR = uds.NewHandler()
 	fds := make(map[string]int)
-	// init
-	// if err := hWR.Init(constants.Uds.PodPath, constants.Uds.Protocol, constants.Uds.MsgBufSize, constants.Uds.CtlBufSize, 0*time.Second, ""); err != nil {
-	// 	println("Test App Error: Error Initialising UDS server: ", err)
-	// 	os.Exit(1)
-	// }
-	// // Execute timeoutBeforeConnect when set to true
-
-	// cleanup, err := hWR.Dial()
-	// if err != nil {
-	// 	println("Test App Error: UDS Dial error:: ", err)
-	// 	cleanup()
-	// 	os.Exit(1)
-	// }
 
 	// connect and verify pod hostname
 	makeRequest("/connect, afxdp-e2e-test")
@@ -87,8 +73,8 @@ func RequestXSKmapFD(devNames []string) map[string]int {
 	return fds
 }
 
-func RequestBusyPoll() {
-
+func RequestBusyPoll(timeout, budget int) {
+	makeRequest("/connect, afxdp-e2e-test")
 }
 
 /*
