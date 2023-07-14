@@ -39,6 +39,7 @@ Call this function to initialize the library, returns a cleanup function
 */
 func Init() uds.CleanupFunc {
 	hWR = uds.NewHandler()
+	// init uds Handler for reading and writing
 	if err := hWR.Init(constants.Uds.PodPath, constants.Uds.Protocol, constants.Uds.MsgBufSize, constants.Uds.CtlBufSize, 0*time.Second, ""); err != nil {
 		println("Library Error: Error Initialising UDS server: ", err)
 		os.Exit(1)
@@ -46,11 +47,10 @@ func Init() uds.CleanupFunc {
 
 	cleanup, err := hWR.Dial()
 	if err != nil {
-		println("Library Error: UDS Dial error: ", err)
+		println("Library Error: UDS Dial error:: ", err)
 		cleanup()
 		os.Exit(1)
 	}
-
 	return cleanup
 	}
 
