@@ -128,19 +128,6 @@ func makeRequest(request string) int {
 	return fd
 }
 
-	fmt.Println("Request: " + request)
-	if err := hWR.Write(request, -1); err != nil {
-		logError("ERROR: %v failed to write to socket", err)
-	}
-	response, fd, err := hWR.Read()
-	if err != nil {
-		logError("Error Reading", err)
-	}
-	checkXSKReq(request, response)
-	fmt.Printf("Response: %s, FD: %d", response, fd)
-	fmt.Println()
-}
-
 /*
 To check if the request for the XSK map FD is either ack or nak
 */
