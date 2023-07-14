@@ -132,7 +132,7 @@ run_local_pods() {
 	echo "*          Run Pod: 1 container, 1 device           *"
 	echo "*****************************************************"
 	kubectl create -f $workdir/pod-1c1d.yaml
-	sleep 10
+	sleep 30
 	echo
 	echo "***** Netdevs attached to pod (ip a) *****"
 	echo
