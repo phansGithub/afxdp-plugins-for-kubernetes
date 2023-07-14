@@ -102,23 +102,6 @@ func RequestBusyPoll() {
 }
 
 /*
-Call this first to initialize the UDS socket
-*/
-func CreateSession() {
-	hWR = uds.NewHandler()
-	err := hWR.Init(constants.Uds.SockDir,
-		constants.Uds.Protocol,
-		constants.Uds.MsgBufSize,
-		constants.Uds.CtlBufSize,
-		time.Duration(constants.Uds.MinTimeout),
-		"")
-	if err != nil {
-		logError("Failed to initialize UDS socket", err)
-	}
-	srv.Start()
-}
-
-/*
 Logs an error with a message
 */
 func logError(message string, e error) {
