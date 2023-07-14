@@ -53,6 +53,15 @@ func Init() uds.CleanupFunc {
 
 	return cleanup
 	}
+
+/*
+Returns the version of our Handshake
+*/
+func GetVersion() {
+	makeRequest("/connect, afxdp-e2e-test")
+	makeRequest("/version")
+}
+
 	authString := fmt.Sprintf("connect, %s", hostName)
 	makeRequest(authString)
 	time.Sleep(requestDelay)
