@@ -11,6 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.14
-RUN apk --no-cache add -U iproute2=5.12.0-r0
+FROM golang:1.20-alpine
+COPY . /usr/src/afxdp_k8s_plugins
+WORKDIR /usr/src/afxdp_k8s_plugins/test/e2e
+RUN apk --no-cache add -U iproute2=6.3.0-r0
 COPY ./udsTest /bin/udsTest
+RUN apk add --no-cache build-base~=0.5 libbsd-dev~=0.11 \
+&& apk add --no-cache libbpf-dev~=0.5 --repository=https://dl-cdn.alpinelinux.org/alpine/v3.15/community 
