@@ -56,10 +56,6 @@ func GetVersion() {
 	makeRequest("/version")
 }
 
-	authString := fmt.Sprintf("connect, %s", hostName)
-	makeRequest(authString)
-	time.Sleep(requestDelay)
-
 /*
 Give it a list of device names and returns a map of the fds for each device and a cleanup function to close the connection
 */
