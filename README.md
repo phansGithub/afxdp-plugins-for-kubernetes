@@ -97,6 +97,9 @@ The following prerequisites are required to build and deploy the plugins from so
 - **llvm**
   - Compiling the bpf progs for Kind.
   - Install on Ubuntu: `apt install llvm`
+- **libxdp**
+  - Same as Libbpf, to load and uload the XDP program onto the network device.
+  - Installation: `make install-xdp`
 
 ### Static analysis, linting and formatting
 

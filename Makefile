@@ -134,6 +134,27 @@ e2edaemon: image
 	@echo
 	@echo
 
+install-xdp: 
+	@echo "******   Install libxdp   ******"
+	@echo
+	sudo apt update && \
+  	sudo apt install -y wget build-essential golang && \
+    sudo wget http://security.ubuntu.com/ubuntu/pool/main/libb/libbpf/libbpf1_1.1.0-1_amd64.deb && \
+    sudo wget http://security.ubuntu.com/ubuntu/pool/main/libb/libbpf/libbpf-dev_1.1.0-1_amd64.deb && \
+    sudo wget https://mirrors.edge.kernel.org/ubuntu/pool/main/x/xdp-tools/libxdp1_1.3.0-2ubuntu2_amd64.deb &&\
+    sudo wget https://mirrors.edge.kernel.org/ubuntu/pool/main/x/xdp-tools/libxdp-dev_1.3.0-2ubuntu2_amd64.deb && \
+    sudo apt install -y ./libbpf1_1.1.0-1_amd64.deb && \
+    sudo apt install -y ./libbpf-dev_1.1.0-1_amd64.deb && \
+    sudo apt install -y ./libxdp1_1.3.0-2ubuntu2_amd64.deb && \
+    sudo apt install -y ./libxdp-dev_1.3.0-2ubuntu2_amd64.deb
+	@echo
+	@echo "******   Cleanup   ******"
+	rm ./libbpf1_1.1.0-1_amd64.deb && \
+	rm ./libbpf-dev_1.1.0-1_amd64.deb && \
+	rm ./libxdp1_1.3.0-2ubuntu2_amd64.deb && \
+	rm ./libxdp-dev_1.3.0-2ubuntu2_amd64.deb
+	@echo
+
 e2efulldaemon: image
 	@echo "****** Full E2E DaemSet  ******"
 	@echo
